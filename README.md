@@ -21,13 +21,13 @@ Grab the ID(s) for the specific file(s) you want.
 ## 3. Use aria2c to download the game from the torrent
 
 ```
-$ aria2c --select-file=<id> --seed-time=0 <torrent_file>
+$ aria2c --select-file=<id> --seed-time=0 <torrent_file> -d <directory_to_save_file_to>
 ```
 
 Example (multiple files):
 
 ```
-$ aria2c --select-file=1,2,3 --seed-time=0 <torrent_file>
+$ aria2c --select-file=1,2,3 --seed-time=0 <torrent_file> -d <directory_to_save_file_to>
 ```
 
 Note: if you want to seed the files you downloaded remove the `--seed-time=0` from your command.
