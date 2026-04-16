@@ -15,6 +15,7 @@ Torrent GUIs can become slow and cumbersome when dealing with dumps containing t
  - Linux: Must be installed on the system (e.g., `sudo apt install aria2`).
  - Windows: The `aria2c.exe` binary must be placed inside the `aria2` folder before compilation. See https://aria2.github.io/
 - **Torrent files** download the torrent from Minerva for the desired dump (https://cdn.minerva-archive.org/torrents/) and place them on the `torrent` folder
+ - All torrent files must have spaces substituted with `_` use the torrent renamer in the tools folder to automate this process 
 
 # Compilation Instructions
 You can build a standalone executable that bundles the necessary torrent and markdown files.

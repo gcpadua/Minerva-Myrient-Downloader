@@ -14,6 +14,7 @@ README.mingw
 
 # Potentially DMCA-violating files
 *.torrent
+download/
 
 # pyinstaller
 dist/
