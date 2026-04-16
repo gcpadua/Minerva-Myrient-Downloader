@@ -13,3 +13,8 @@ README.mingw
 
 # Potentially DMCA-violating files
 *.torrent
+
+# pyinstaller
+dist/
+build/
+*.spec

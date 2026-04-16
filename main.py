@@ -1,4 +1,7 @@
 import os
+import sys
+import shutil
+import platform
 import subprocess
 
 def parse_md_table(file_path: str) -> list:
@@ -57,11 +60,24 @@ def parse_selection(selection: str) -> list:
 				continue
 	return ids
 
+def get_resource_path(relative_path: str) -> str:
+    """
+    Returns the absolute path to the resource, whether in development mode
+    or running as a compiled binary by PyInstaller.
+    """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 if __name__ == "__main__":
 	# Relevant folders
-	aria2_folder = "./aria2"
-	torrent_folder = "./torrent"
-	markdown_folder = "./markdown"
+	if platform.system() == "Windows":
+		aria2_folder = get_resource_path("aria2")
+	torrent_folder = get_resource_path("torrent")
+	markdown_folder = get_resource_path("markdown")
 
 	#List all files in the markdown folder
 	markdown_files = [ f for f in os.listdir(markdown_folder) if f.endswith('.md') ]
@@ -116,5 +132,13 @@ if __name__ == "__main__":
 		ids_str = ','.join(str(id) for id in ids)
 		# Execute aria2c --select-file=<id> --seed-time=0 <torrent_file> -d <directory_to_save_file_to>
 		torrent_file = os.path.join(torrent_folder, selected_file.replace('-ids.md', ''))
-		subprocess.run(f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download", shell=True)
+		if platform.system() == "Windows":
+			command = f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download"
+		else:
+			if shutil.which("aria2c") is None:
+				print("Error: 'aria2c' not found in the system.")
+				print("Please install it using your package manager (e.g., sudo apt install aria2).")
+				sys.exit(1)
+			command = f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download"
+		subprocess.run(command, shell=True)
 		print("Download completed.\nFiles saved to the 'download' folder.")
