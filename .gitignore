@@ -1,3 +1,6 @@
+# venv
+.venv/
+
 # Aria2c
 aria2c.exe
 AUTHORS

@@ -117,3 +117,4 @@ if __name__ == "__main__":
 		# Execute aria2c --select-file=<id> --seed-time=0 <torrent_file> -d <directory_to_save_file_to>
 		torrent_file = os.path.join(torrent_folder, selected_file.replace('-ids.md', ''))
 		subprocess.run(f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download", shell=True)
+		print("Download completed.\nFiles saved to the 'download' folder.")
