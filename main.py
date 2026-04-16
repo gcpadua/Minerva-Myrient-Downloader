@@ -120,6 +120,9 @@ if __name__ == "__main__":
 					ids.extend(parse_selection(selection))
 			selection = input("Do you want to search for another game? (y/n): ").lower()
 		
+	if not ids:
+		input("No games selected for download. Press Enter to exit.")
+		sys.exit(0)
 	print("Game selection completed.\nThe following games will be downloaded:")
 	for game in games:
 		if game['id'] in ids:
@@ -133,7 +136,7 @@ if __name__ == "__main__":
 		# Execute aria2c --select-file=<id> --seed-time=0 <torrent_file> -d <directory_to_save_file_to>
 		torrent_file = os.path.join(torrent_folder, selected_file.replace('-ids.md', ''))
 		if platform.system() == "Windows":
-			command = f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download --bt-remove-unselected-file=true"
+			command = f"{aria2_folder}\\aria2c.exe --select-file={ids_str} --seed-time=0 {torrent_file} -d download --bt-remove-unselected-file=true"
 		else:
 			if shutil.which("aria2c") is None:
 				print("Error: 'aria2c' not found in the system.")
