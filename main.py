@@ -141,4 +141,4 @@ if __name__ == "__main__":
 				sys.exit(1)
 			command = f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download"
 		subprocess.run(command, shell=True)
-		print("Download completed.\nFiles saved to the 'download' folder.")
+		input("Download completed.\nFiles saved to the 'download' folder.\nPress Enter to exit.")

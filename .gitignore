@@ -1,5 +1,6 @@
 # venv
 .venv/
+.venv-linux/
 
 # Aria2c
 aria2c.exe
