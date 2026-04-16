@@ -1,6 +1,6 @@
 import os
 
-DEST_DIR = ".torrent"
+DEST_DIR = "torrent"
 
 def rename_torrents():
     

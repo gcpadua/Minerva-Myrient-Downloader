@@ -4,7 +4,7 @@ import time
 import os
 
 BASE_URL = "https://cdn.minerva-archive.org/torrents/"
-DEST_DIR = ".torrent"
+DEST_DIR = "torrent"
 
 def download_torrents():
     os.makedirs(DEST_DIR, exist_ok=True)

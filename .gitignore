@@ -1,0 +1,12 @@
+# Aria2c
+aria2c.exe
+AUTHORS
+ChangeLog
+COPYING
+LICENSE.Openssl
+NEWS
+README.HTML
+README.mingw
+
+# Potentially DMCA-violating files
+*.torrent
