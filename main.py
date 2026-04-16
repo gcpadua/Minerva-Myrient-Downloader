@@ -133,12 +133,12 @@ if __name__ == "__main__":
 		# Execute aria2c --select-file=<id> --seed-time=0 <torrent_file> -d <directory_to_save_file_to>
 		torrent_file = os.path.join(torrent_folder, selected_file.replace('-ids.md', ''))
 		if platform.system() == "Windows":
-			command = f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download"
+			command = f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download --bt-remove-unselected-file=true"
 		else:
 			if shutil.which("aria2c") is None:
 				print("Error: 'aria2c' not found in the system.")
 				print("Please install it using your package manager (e.g., sudo apt install aria2).")
 				sys.exit(1)
-			command = f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download"
+			command = f"aria2c --select-file={ids_str} --seed-time=0 {torrent_file} -d download --bt-remove-unselected-file=true"
 		subprocess.run(command, shell=True)
 		input("Download completed.\nFiles saved to the 'download' folder.\nPress Enter to exit.")
